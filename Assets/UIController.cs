@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -26,6 +27,14 @@ public class UIController : MonoBehaviour
         {
             this.len += this.speed * Time.deltaTime;
             this.runLengthText.GetComponent<Text>().text = "Distance:  " + len.ToString("F2") + "m";
+        }
+
+        if (this.isGameOver == true)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
         }
     }
 
