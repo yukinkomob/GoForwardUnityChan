@@ -8,9 +8,12 @@ public class CubeController : MonoBehaviour
 
     private float deadLine = -10;
 
+    public AudioClip blockSound;
+    AudioSource audioSource;
+
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -20,6 +23,15 @@ public class CubeController : MonoBehaviour
         if (transform.position.x < this.deadLine)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        string collidedName = collision.gameObject.name;
+        if (collidedName.StartsWith("CubePrefab") || collidedName == "ground")
+        {
+            audioSource.PlayOneShot(blockSound);
         }
     }
 }
